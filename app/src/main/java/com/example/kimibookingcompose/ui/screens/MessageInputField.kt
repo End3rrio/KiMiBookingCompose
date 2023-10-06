@@ -97,7 +97,6 @@ fun MessageInputField(
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Preview
 @Composable
 fun MessageInputFieldPreview() {

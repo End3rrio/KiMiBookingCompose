@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kimibookingcompose.ui.HotelsApp
+import com.example.kimibookingcompose.ui.screens.MockMainScreen
 import com.example.kimibookingcompose.ui.theme.KiMiBookingComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KiMiBookingComposeTheme {
-                HotelsApp()
+                MockMainScreen(onMessageSent = {})
             }
         }
     }

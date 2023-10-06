@@ -32,7 +32,9 @@ fun CustomBottomNavigation(
         listItems.forEach { item ->
             BottomNavigationItem(
                 selected = currentRoute == item.route,
-                onClick = {  },
+                onClick = {
+                          navController.navigate(item.route)
+                },
                 icon = {
                     Icon(imageVector = item.iconId, contentDescription = "Icon")
                 },
