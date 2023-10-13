@@ -26,41 +26,41 @@ import com.example.kimibookingcompose.R
 import com.example.kimibookingcompose.data.Hotel
 
 @Composable
-fun HotelsGridScreen (
+fun HotelsGridScreen(
     hotels: List<Hotel>,
     modifier: Modifier
-){
+) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(4.dp)
     ) {
         itemsIndexed(hotels) { _, hotel ->
-            HotelCard(hotel = hotel, modifier = modifier)
+            HotelCard(modifier = modifier)
         }
     }
 }
 
 @Composable
-fun HotelCard (
-    hotel: Hotel,
+fun HotelCard(
+    //hotel: Hotel,
     modifier: Modifier
 ) {
-    Card (
+    Card(
         modifier = modifier
             .padding(4.dp)
             .fillMaxWidth()
             .requiredHeight(296.dp),
 
-    ) {
-        Column (horizontalAlignment = Alignment.CenterHorizontally) {
-            hotel.name?.let {
-                Text(
-                    text = it,
-                    textAlign = TextAlign.Center,
-                    modifier = modifier
-                        .padding(top = 4.dp, bottom = 8.dp)
-                    )
-            }
+        ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+//            hotel.name?.let {
+//                Text(
+//                    text = it,
+//                    textAlign = TextAlign.Center,
+//                    modifier = modifier
+//                        .padding(top = 4.dp, bottom = 8.dp)
+//                    )
+//            }
             Image(
                 painter = painterResource(id = R.drawable.ic_hotel_card1),
                 contentDescription = stringResource(id = R.string.content_description)
@@ -71,7 +71,7 @@ fun HotelCard (
 
 @Composable
 @Preview
-fun showHotelCard(){
+fun showHotelCard() {
     var hotel = Hotel("test", "blablabla", "dom2")
-    HotelCard(hotel = hotel, modifier = Modifier)
+    HotelCard(modifier = Modifier)
 }

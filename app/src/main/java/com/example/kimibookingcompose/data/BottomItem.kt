@@ -8,9 +8,9 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomItem(val title: String, val iconId: ImageVector, val route: String){
-    object Screen1: BottomItem("Screen 1", Icons.Default.Home, "screen_1" )
-    object Screen2: BottomItem("Screen 2", Icons.Default.DateRange, "screen_2" )
-    object Screen3: BottomItem("Screen 3", Icons.Default.LocationOn, "screen_3" )
-    object Screen4: BottomItem("Screen 4", Icons.Default.AccountCircle, "screen_4" )
+    object Screen1: BottomItem("Home", Icons.Default.Home, "screen_1" )
+    object Screen2: BottomItem("Date", Icons.Default.DateRange, "screen_2" )
+    object Screen3: BottomItem("Location", Icons.Default.LocationOn, "screen_3" )
+    object Screen4: BottomItem("Profile", Icons.Default.AccountCircle, "screen_4" )
 
 }
