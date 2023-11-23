@@ -2,7 +2,6 @@ package com.example.kimibookingcompose.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,18 +17,11 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,27 +31,25 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
-import com.example.kimibookingcompose.ui.CustomBottomNavigation
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.kimibookingcompose.navigation.AppNavGraph
+import com.example.kimibookingcompose.navigation.CustomBottomNavigation
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 fun HotelsScreen(
     modifier: Modifier = Modifier,
     onMessageSent: (String) -> Unit
 ) {
+    val navHostController = rememberNavController()
     var message by remember { mutableStateOf("") }
-    val navController = rememberNavController()
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Scaffold(
         bottomBar = {
-            CustomBottomNavigation(navController = navController)
+            CustomBottomNavigation(navController = navHostController)
         },
         topBar = {
             androidx.compose.material.TopAppBar(
@@ -139,15 +129,22 @@ fun HotelsScreen(
                 }
             )
         }
-    ) { innerPadding ->
-        NavGraph(navHostController = navController)
+    ) { paddingValues ->
+        AppNavGraph(
+            navHostController = navHostController,
+            homeScreenContent = {  },
+            dateScreenContent = { /*TODO*/ },
+            locationScreenContent = { /*TODO*/ }) {
+            
+        }
+
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(innerPadding)
+                .padding(paddingValues)
         ) {
             items(10) {position ->
                 Row {
@@ -162,10 +159,5 @@ fun HotelsScreen(
 }
 
 
-@Composable
-@Preview
-fun PreviewHotelsScreen() {
-    HotelsScreen(onMessageSent = {})
-}
 
 
